@@ -30,7 +30,7 @@ cd web-src && python3 -m http.server 8000     # open http://localhost:8000
 Edit `web-src/`, then from the repo root run `tools/sync-site.sh` and commit `docs/`. Skipping the sync leaves the live site on the old version.
 
 ## Privacy
-Client details never leave the device. The only thing sent is an anonymous visit count to [GoatCounter](https://www.goatcounter.com) (no cookies): every visit to the website or the app adds one to the total shown on the home page. No names, dates or places are sent.
+Client details never leave the device. The only thing sent is an anonymous visit count to [GoatCounter](https://www.goatcounter.com) (no cookies): every time the app is opened adds one to the number shown on the home page, and website visits are counted in the dashboard. No names, dates or places are sent.
 
 ## License
 GNU AGPL v3 (see `LICENSE`), because the app includes the Swiss Ephemeris (AGPL/GPL). Anyone using the hosted app can get the full source here.
