@@ -62,7 +62,7 @@ button.btn{font:inherit;font-weight:600;cursor:pointer}
   background-size:260px 150px}
 .mandala{position:absolute;right:-180px;top:-120px;width:780px;height:780px;color:#e8b04a;opacity:.2;pointer-events:none;animation:spin 240s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-top:64px;padding-bottom:76px}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding-top:64px;padding-bottom:76px}
 .om{font:500 1.5rem "Noto Sans Devanagari",serif;color:#e8b04a;display:block;margin-bottom:6px}
 .pill{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:99px;border:1px solid rgba(232,176,74,.5);background:rgba(232,176,74,.08);color:#f6d27a}
 .hero h1{font:700 clamp(2.4rem,5.6vw,4rem)/1.08 var(--serif);margin:18px 0 12px;letter-spacing:-.005em}
@@ -70,7 +70,7 @@ button.btn{font:inherit;font-weight:600;cursor:pointer}
 .hero p.lead{color:var(--hero-mute);font-size:1.08rem;max-width:34em;margin:0 0 6px}
 .hero p.lead .ta{color:#bda893;font-size:.95em;margin-top:4px}
 .zero{display:flex;align-items:center;gap:22px;margin:28px 0;padding:18px 26px;border-radius:24px;background:rgba(232,176,74,.07);border:3px double rgba(232,176,74,.7);max-width:540px}
-.zero b{font:700 clamp(4.4rem,14vw,6.6rem)/.95 var(--serif);background:linear-gradient(160deg,#fff1c2,#f0b84a 50%,#e0762c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.zero b{font:700 clamp(2.8rem,8vw,3.8rem)/.95 var(--serif);background:linear-gradient(160deg,#fff1c2,#f0b84a 50%,#e0762c);-webkit-background-clip:text;background-clip:text;color:transparent}
 .zero div{font-size:.95rem;color:var(--hero-mute)}
 .zero strong{display:block;color:#f6d27a;letter-spacing:.18em;font-size:1.05rem}
 .zero .ta{color:#bda893;font-size:.9em}
@@ -86,6 +86,23 @@ button.btn{font:inherit;font-weight:600;cursor:pointer}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .divider::after{transform:scaleX(-1)}
 .divider svg{width:46px;height:24px;flex:none}
+
+/* mascot */
+.hero-art{position:relative;max-width:560px;margin:0 auto}
+.hero-art::before{content:"";position:absolute;inset:6% 2% 0;background:radial-gradient(closest-side,rgba(232,176,74,.38),transparent 72%)}
+.hero-art img{position:relative;display:block;width:100%;height:auto;filter:drop-shadow(0 26px 36px rgba(0,0,0,.55))}
+.mascot-sm{display:block;height:150px;width:auto;margin:-6px auto 4px;filter:drop-shadow(0 10px 14px rgba(40,10,20,.28))}
+.steps{margin-top:78px}
+.step .st{position:absolute;right:14px;top:-88px;height:124px;width:auto;filter:drop-shadow(0 8px 10px rgba(40,10,20,.28))}
+.meet{display:grid;grid-template-columns:minmax(200px,340px) 1fr;gap:48px;align-items:center}
+.meet .big{width:100%;height:auto;filter:drop-shadow(0 22px 28px rgba(40,10,20,.3))}
+.meet p{max-width:36em}
+.quote{border-left:3px solid var(--gold);padding-left:16px;margin:20px 0 0}
+.stickers{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:14px;margin-top:52px}
+.stickers div{display:grid;place-items:center;height:176px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:12px;transition:transform .2s,border-color .2s}
+.stickers div:hover{transform:translateY(-4px) rotate(-1.5deg);border-color:var(--gold)}
+.stickers img{max-width:100%;max-height:150px;width:auto;height:auto;filter:drop-shadow(0 6px 8px rgba(40,10,20,.22))}
+@media(max-width:720px){.meet{grid-template-columns:1fr;text-align:center}.meet .big{max-width:250px;margin:0 auto}.quote{text-align:left}.mascot-sm{height:120px}}
 
 /* sections */
 section{padding:64px 0}
@@ -167,7 +184,7 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
         <a class="btn sec" href="#mission">Why free?<small>ஏன் இலவசம்?</small></a>
       </div>
     </div>
-    <div class="phone"><img src="4-jathagam-report.png" alt="Kaniyan jathagam report · ஜாதக அறிக்கை"></div>
+    <div class="hero-art"><img src="img/kaniyan-zero.webp" width="960" height="776" alt="Kaniyan, the computer-headed astrologer, wondering at a giant golden zero · கணியன்: கட்டணம் பூஜ்யம்"></div>
   </div>
 </header>
 
@@ -177,6 +194,7 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
   <div class="wrap">
     <div class="mission center">
       <svg class="bg" viewBox="0 0 400 400" aria-hidden="true"><use href="#mandala"/></svg>
+      <img class="mascot-sm" src="img/pose-vanakkam.webp" alt="Kaniyan greeting with folded hands · வணக்கம்" width="175" height="324" loading="lazy">
       <p class="shloka" lang="sa">लोकाः समस्ताः सुखिनो भवन्तु<span class="ta">அனைவரும் இன்புற்றிருக்கட்டும் · May all beings be happy</span></p>
       <h2>Making astrology free<span class="ta">ஜோதிடத்தை இலவசமாக்குவோம்</span></h2>
       <p>Good astrology software is expensive, and many astrologers, especially those just starting out, cannot afford it. Kaniyan is an initiative to free astrologers from costly software, so skill and knowledge decide who succeeds, not who can pay for a licence.
@@ -189,13 +207,31 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
 
 <div class="divider" aria-hidden="true"><svg viewBox="0 0 60 32"><use href="#lotus"/></svg></div>
 
+<section id="meet">
+  <div class="wrap">
+    <div class="meet">
+      <img class="big" src="img/kaniyan-big.webp" width="454" height="760" alt="Kaniyan, the computer-headed astrologer, giving a thumbs up · கணியன்" loading="lazy">
+      <div>
+        <h2>Meet Kaniyan<span class="ta">கணியனைச் சந்தியுங்கள்</span></h2>
+        <p>Kaniyan is the friendly helper behind the screen. He does the calculations, so you can spend your time guiding people.
+          <span class="ta">கணியன் திரைக்குப் பின்னால் இருக்கும் நட்பு உதவியாளர். கணக்கீடுகளை அவன் பார்த்துக்கொள்வான்; நீங்கள் மக்களுக்கு வழிகாட்டுங்கள்.</span></p>
+        <p class="quote">Our name honours Kaniyan Pungundranar, the Sangam-era Tamil poet who wrote “யாதும் ஊரே யாவரும் கேளிர்” – every place is home, everyone is kin.
+          <span class="ta">எங்கள் பெயர் சங்க காலப் புலவர் கணியன் பூங்குன்றனாரை நினைவுகூர்கிறது. “யாதும் ஊரே யாவரும் கேளிர்” – எல்லா ஊரும் நம் ஊர், எல்லோரும் நம் உறவினர்.</span></p>
+      </div>
+    </div>
+    <div class="stickers"><div><img src="img/pose-chart.webp" alt="Kaniyan pointing at a horoscope chart" loading="lazy"></div><div><img src="img/pose-think.webp" alt="Kaniyan thinking" loading="lazy"></div><div><img src="img/pose-vanakkam.webp" alt="Kaniyan with folded hands" loading="lazy"></div><div><img src="img/pose-book-ok.webp" alt="Kaniyan with a book and an OK sign" loading="lazy"></div><div><img src="img/pose-laptop.webp" alt="Kaniyan working on a laptop" loading="lazy"></div><div><img src="img/pose-idea.webp" alt="Kaniyan with a bright idea" loading="lazy"></div><div><img src="img/pose-reading.webp" alt="Kaniyan reading a big book" loading="lazy"></div><div><img src="img/pose-rest.webp" alt="Kaniyan relaxing" loading="lazy"></div><div><img src="img/pose-scroll.webp" alt="Kaniyan reading a palm-leaf scroll" loading="lazy"></div><div><img src="img/pose-shrug.webp" alt="Kaniyan shrugging" loading="lazy"></div><div><img src="img/pose-telescope.webp" alt="Kaniyan looking at the stars" loading="lazy"></div><div><img src="img/pose-dance.webp" alt="Kaniyan dancing with joy" loading="lazy"></div></div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 60 32"><use href="#lotus"/></svg></div>
+
 <section>
   <div class="wrap">
     <h2 class="center">Three steps to a client report<span class="ta">மூன்று படிகளில் வாடிக்கையாளர் அறிக்கை</span></h2>
     <div class="steps">
-      <div class="step"><h3>Add your logo, name and phone number</h3><p class="ta">உங்கள் லோகோ, பெயர், தொலைபேசி எண்ணைச் சேர்க்கவும்</p>Set it up once. It appears on every report you make.<span class="ta">ஒருமுறை அமைத்தால் போதும்; நீங்கள் உருவாக்கும் ஒவ்வொரு அறிக்கையிலும் வரும்.</span></div>
-      <div class="step"><h3>Make a jathagam for you or your client</h3><p class="ta">உங்களுக்கோ உங்கள் வாடிக்கையாளருக்கோ ஜாதகம் உருவாக்கவும்</p>Enter date, time and place of birth. Charts and dasa appear instantly.<span class="ta">தேதி, நேரம், ஊர் உள்ளிடவும். கட்டங்களும் தசையும் உடனே தெரியும்.</span></div>
-      <div class="step"><h3>Save the PDF</h3><p class="ta">PDF சேமிக்கவும்</p>A branded report ready to hand to your client.<span class="ta">வாடிக்கையாளருக்குக் கொடுக்கத் தயாரான உங்கள் அடையாள அறிக்கை.</span></div>
+      <div class="step"><img class="st" src="img/pose-chart.webp" alt="" loading="lazy"><h3>Add your logo, name and phone number</h3><p class="ta">உங்கள் லோகோ, பெயர், தொலைபேசி எண்ணைச் சேர்க்கவும்</p>Set it up once. It appears on every report you make.<span class="ta">ஒருமுறை அமைத்தால் போதும்; நீங்கள் உருவாக்கும் ஒவ்வொரு அறிக்கையிலும் வரும்.</span></div>
+      <div class="step"><img class="st" src="img/pose-laptop.webp" alt="" loading="lazy"><h3>Make a jathagam for you or your client</h3><p class="ta">உங்களுக்கோ உங்கள் வாடிக்கையாளருக்கோ ஜாதகம் உருவாக்கவும்</p>Enter date, time and place of birth. Charts and dasa appear instantly.<span class="ta">தேதி, நேரம், ஊர் உள்ளிடவும். கட்டங்களும் தசையும் உடனே தெரியும்.</span></div>
+      <div class="step"><img class="st" src="img/pose-book-ok.webp" alt="" loading="lazy"><h3>Save the PDF</h3><p class="ta">PDF சேமிக்கவும்</p>A branded report ready to hand to your client.<span class="ta">வாடிக்கையாளருக்குக் கொடுக்கத் தயாரான உங்கள் அடையாள அறிக்கை.</span></div>
     </div>
   </div>
 </section>
