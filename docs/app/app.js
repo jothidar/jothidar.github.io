@@ -248,6 +248,7 @@ function setupScreen() {
 }
 
 (async () => {
+  fetch('https://countapi.mileshilliard.com/api/v1/hit/jothidar_visits', { mode: 'no-cors', keepalive: true }).catch(() => {});   // anonymous visit count shown on the home page
   applyLang();
   if (!store.get('details_done', false)) setupScreen();
   $('#status').textContent = t('loading');
