@@ -1,5 +1,5 @@
 // Offline cache. tools/sync-site.sh rewrites the next line with a content hash and the file list.
-const V = 'jothidar-62a47f6f45', FILES = ['./app.js', './data/places.json', './icon-192.png', './index.html', './lib/swisseph-wasm/LICENSE', './lib/swisseph-wasm/src/swisseph.js', './lib/swisseph-wasm/wasm/swisseph.data', './lib/swisseph-wasm/wasm/swisseph.js', './lib/swisseph-wasm/wasm/swisseph.wasm', './logo-data.js', './logo.png', './manifest.webmanifest', './vedic.js', './'];
+const V = 'jothidar-9e6980d864', FILES = ['./app.js', './data/places.json', './icon-192.png', './index.html', './lib/swisseph-wasm/LICENSE', './lib/swisseph-wasm/src/swisseph.js', './lib/swisseph-wasm/wasm/swisseph.data', './lib/swisseph-wasm/wasm/swisseph.js', './lib/swisseph-wasm/wasm/swisseph.wasm', './logo-data.js', './logo.png', './manifest.webmanifest', './vedic.js', './'];
 
 addEventListener('install', (e) => e.waitUntil(caches.open(V).then((c) => c.addAll(FILES)).then(() => skipWaiting())));
 addEventListener('activate', (e) => e.waitUntil(

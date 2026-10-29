@@ -74,6 +74,12 @@ button.btn{font:inherit;font-weight:600;cursor:pointer}
 .zero div{font-size:.95rem;color:var(--hero-mute)}
 .zero strong{display:block;color:#f6d27a;letter-spacing:.18em;font-size:1.05rem}
 .zero .ta{color:#bda893;font-size:.9em}
+.users{display:flex;align-items:center;gap:18px;margin:-8px 0 26px;max-width:540px;padding:0 6px}
+.users .un{font:700 clamp(2.6rem,7vw,3.6rem)/1 var(--serif);background:linear-gradient(160deg,#fff1c2,#f0b84a 55%,#e0762c);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.users .ut{font-size:.98rem;color:var(--hero-mute);line-height:1.5}
+.users .ut .ta{color:#bda893;font-size:.9em}
+.users [data-on]{display:none}.users[data-state=on] [data-on]{display:block}.users[data-state=on] [data-off]{display:none}
+.users:not([data-state=on]) .un{display:none}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 
 /* phone */
@@ -178,6 +184,13 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
         <b>₹0</b>
         <div><strong>ZERO FEE</strong>No subscription. No ads. No watermark.
           <span class="ta">கட்டணம் இல்லை · சந்தா இல்லை · விளம்பரம் இல்லை</span></div>
+      </div>
+      <div class="users" id="users" aria-live="polite">
+        <div class="un" id="ucount" data-on>0</div>
+        <div class="ut">
+          <span data-on>people have already used Jothidar for ₹0 · no fee, no subscription<span class="ta">பேர் ₹0 கட்டணத்தில், சந்தா இல்லாமல் ஜோதிடரைப் பயன்படுத்தியுள்ளனர்</span></span>
+          <span data-off>Join the first astrologers using Jothidar for ₹0<span class="ta">₹0 கட்டணத்தில் ஜோதிடரைப் பயன்படுத்தும் முதல் ஜோதிடர்களுடன் சேருங்கள்</span></span>
+        </div>
       </div>
       <div class="cta">
         <a class="btn pri" href="app/index.html">Open the app<small>செயலியைத் திற</small></a>
@@ -296,11 +309,24 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
     <svg class="lt" viewBox="0 0 60 32" aria-hidden="true"><use href="#lotus"/></svg>
     Jothidar is free software under the <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>, built on the Swiss Ephemeris.<br>
     Contact · தொடர்புக்கு: <a href="mailto:sathiyajithjn@gmail.com">sathiyajithjn@gmail.com</a><br>
+    Usage count: devices only, one anonymous +1 the first time a report is made. No names, dates or places are ever sent.<span class="ta">பயன்படுத்தியோர் எண்ணிக்கை: சாதனங்கள் மட்டும்; முதல் அறிக்கைக்கு ஒரு பெயரற்ற +1. பெயர், தேதி, ஊர் எதுவும் அனுப்பப்படாது.</span><br>
     Place data · இடத் தரவு © <a href="https://www.geonames.org">GeoNames</a>, CC-BY 4.0.
   </div>
 </footer>
 
 <script>
+(async()=>{                       // live user count; the number stays hidden until it is big enough to be worth showing
+  const MIN=25,box=document.getElementById('users'),out=document.getElementById('ucount');
+  try{
+    const r=await fetch('https://jothidar.goatcounter.com/counter//first-use.json');
+    const n=parseInt(String((await r.json()).count).replace(/\D/g,''),10);
+    if(!(n>=MIN))return;
+    box.dataset.state='on';
+    const still=matchMedia('(prefers-reduced-motion:reduce)').matches,t0=performance.now();
+    const tick=t=>{const k=still?1:Math.min((t-t0)/1200,1);out.textContent=Math.round(n*(1-Math.pow(1-k,3))).toLocaleString('en-IN');if(k<1)requestAnimationFrame(tick)};
+    requestAnimationFrame(tick);
+  }catch(e){}
+})();
 document.getElementById('share').onclick=async()=>{
   const d={title:'Jothidar',text:'Free astrology software for astrologers: jathagam & porutham, ₹0. ஜோதிடர்களுக்கு இலவச ஜாதகம் & பொருத்தம் செயலி.',url:location.href.split('#')[0]};
   try{if(navigator.share)await navigator.share(d);else{await navigator.clipboard.writeText(d.url);alert('Link copied · இணைப்பு நகலெடுக்கப்பட்டது')}}catch(e){}

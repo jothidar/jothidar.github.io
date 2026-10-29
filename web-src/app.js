@@ -172,6 +172,8 @@ function applyLang() {
 }
 
 let last = { jath: null, match: null };
+// Anonymous user count: one "+1" the first time a report is made on this device. No names, dates or places are sent.
+const countUser = () => { if (store.get('counted', false)) return; store.set('counted', true); new Image().src = 'https://jothidar.goatcounter.com/count?p=/first-use&e=true&rnd=' + Math.random(); };
 function wire() {
   document.querySelectorAll('nav button').forEach((b) => (b.onclick = () => {
     document.querySelectorAll('nav button').forEach((x) => x.classList.toggle('on', x === b));
@@ -182,13 +184,13 @@ function wire() {
     const r = forms.jath.chart(); if (!r) return toast(t('need'));
     const html = V.jathagamHtml(r.chart, r.name);
     last.jath = { html, title: 'Jathagam_' + r.name };
-    $('#res1').innerHTML = html; $('#out1').hidden = false; $('#out1').scrollIntoView();
+    $('#res1').innerHTML = html; $('#out1').hidden = false; $('#out1').scrollIntoView(); countUser();
   };
   $('#go-match').onclick = () => {
     const g = forms.girl.chart(), b = forms.boy.chart(); if (!g || !b) return toast(t('need'));
     const html = V.poruthamHtml(g.chart, b.chart, [g.name, b.name], settings);
     last.match = { html, title: `Porutham_${g.name}_${b.name}` };
-    $('#res2').innerHTML = html; $('#out2').hidden = false; $('#out2').scrollIntoView();
+    $('#res2').innerHTML = html; $('#out2').hidden = false; $('#out2').scrollIntoView(); countUser();
   };
   $('#pdf-jath').onclick = () => last.jath && exportPdf(last.jath.html, last.jath.title);
   $('#pdf-match').onclick = () => last.match && exportPdf(last.match.html, last.match.title);
