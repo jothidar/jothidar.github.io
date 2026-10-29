@@ -1,9 +1,9 @@
-# Kaniyan · கணியன்
+# Jothidar · ஜோதிடர்
 
 **Free jathagam and porutham for every astrologer.** An initiative to free astrologers from costly astrology software. No fee, no subscription, no ads, no watermark.
-ஜோதிடர்களுக்கான இலவச ஜாதகம் மற்றும் திருமணப் பொருத்தம் செயலி.
+ஜோதிடர்களுக்கான இலவச ஜாதகம் மற்றும் திருமணப் பொருத்தம் செயலி. Our mascot is **Kaniyan**, a computer-headed astrologer in a veshti, named after the Sangam-era poet Kaniyan Pungundranar.
 
-**Use it now: https://saz-io.github.io/kaniyan/** (open the app from the page; on a phone, use "Add to Home Screen" to install it and use it offline).
+**Use it now: https://jothidar.github.io/** (open the app from the page; on a phone, use "Add to Home Screen" to install it and use it offline).
 
 ## Features
 - Jathagam: rasi and navamsa charts, planet positions, panchangam, dasa and bhukti (Swiss Ephemeris)
@@ -34,4 +34,4 @@ GNU AGPL v3 (see `LICENSE`), because the app includes the Swiss Ephemeris (AGPL/
 Place data © [GeoNames](https://www.geonames.org), CC-BY 4.0.
 
 ## Support
-Kaniyan stays free. If it helps you, an optional tip via UPI (`saz@slc`) keeps it going.
+Jothidar stays free. If it helps you, an optional tip via UPI (`saz@slc`) keeps it going.

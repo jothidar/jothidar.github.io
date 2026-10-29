@@ -156,7 +156,7 @@ let forms = {};
 function applyLang() {
   document.documentElement.lang = settings.ui_lang;
   const e = settings;
-  $('#hname').textContent = (settings.ui_lang === 'ta' ? e.shop_name_ta : e.shop_name_en) || 'கணியன்';
+  $('#hname').textContent = (settings.ui_lang === 'ta' ? e.shop_name_ta : e.shop_name_en) || 'ஜோதிடர்';
   $('#hphone').textContent = e.shop_phone ? `${e.phone_icon} ${e.shop_phone}`.trim() : '';
   document.title = $('#hname').textContent;
   syncLogo();
