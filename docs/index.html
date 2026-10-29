@@ -74,9 +74,10 @@ button.btn{font:inherit;font-weight:600;cursor:pointer}
 .zero div{font-size:.95rem;color:var(--hero-mute)}
 .zero strong{display:block;color:#f6d27a;letter-spacing:.18em;font-size:1.05rem}
 .zero .ta{color:#bda893;font-size:.9em}
-.users{display:flex;align-items:center;gap:18px;margin:-8px 0 26px;max-width:540px;padding:0 6px}
-.users .un{font:700 clamp(2.6rem,7vw,3.6rem)/1 var(--serif);background:linear-gradient(160deg,#fff1c2,#f0b84a 55%,#e0762c);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
-.users .ut{font-size:.98rem;color:var(--hero-mute);line-height:1.5}
+.users{display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;margin:-6px 0 28px;max-width:560px;padding:0 6px}
+.users .un{font:700 clamp(4.6rem,15vw,7.4rem)/.92 var(--serif);background:linear-gradient(160deg,#fff1c2,#f0b84a 55%,#e0762c);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.users .ut{flex:1 1 220px;font-size:1.02rem;color:var(--hero-mute);line-height:1.5}
+.users .ut b{display:block;margin-top:6px;font:600 1.15rem var(--serif);color:#f6d27a}
 .users .ut .ta{color:#bda893;font-size:.9em}
 .users [data-on]{display:none}.users[data-state=on] [data-on]{display:block}.users[data-state=on] [data-off]{display:none}
 .users:not([data-state=on]) .un{display:none}
@@ -188,7 +189,7 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
       <div class="users" id="users" aria-live="polite">
         <div class="un" id="ucount" data-on>0</div>
         <div class="ut">
-          <span data-on>visits so far, and every visit is free · ₹0 fee, no subscription<span class="ta">இதுவரை வருகைகள்; ஒவ்வொரு வருகையும் இலவசம் · கட்டணம் ₹0, சந்தா இல்லை</span></span>
+          <span data-on>visits so far, every one with ₹0 fees and no subscription<span class="ta">இதுவரை வருகைகள், ஒவ்வொன்றும் ₹0 கட்டணத்தில், சந்தா இல்லாமல்</span><b>Thank you for using Jothidar! 🙏<span class="ta" style="font:500 .8em 'Noto Serif Tamil',serif">ஜோதிடரைப் பயன்படுத்தியதற்கு நன்றி!</span></b></span>
           <span data-off>Be among the first astrologers to use Jothidar, free<span class="ta">இலவசமாக ஜோதிடரைப் பயன்படுத்தும் முதல் ஜோதிடர்களில் ஒருவராகுங்கள்</span></span>
         </div>
       </div>
