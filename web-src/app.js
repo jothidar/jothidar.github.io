@@ -17,11 +17,11 @@ const T = {
   ta: { jath: 'ஜாதகம்', match: 'பொருத்தம்', set: 'அமைப்புகள்', name: 'பெயர்', date: 'பிறந்த தேதி', time: 'பிறந்த நேரம்', place: 'பிறந்த ஊர் (பெயர் தட்டச்சு செய்யவும்)',
     manual: 'ஊர் பட்டியலில் இல்லையா? அட்சரேகை/தீர்க்கரேகை', lat: 'அட்சரேகை', lon: 'தீர்க்கரேகை', tz: 'நேர மண்டலம் (மணி)', tzauto: 'தானியங்கி', tzsel: 'நேர மண்டலம்', tzist: 'IST (+5:30)',
     go: 'ஜாதகம் கணி', gom: 'பொருத்தம் பார்', pdf: 'PDF ஆக சேமி', girl: 'பெண்', boy: 'ஆண்', save: 'சேமி', load: 'சேமித்தவை', del: 'நீக்கு', reset: 'இயல்புநிலைக்கு மாற்று',
-    loading: 'ஏற்றுகிறது…', nores: 'முடிவுகள் இல்லை', need: 'பெயர், தேதி, நேரம், ஊர் தேவை', reset: 'இயல்புநிலைக்கு மாற்று', exp: 'அமைப்புகளை நகலெடு', imp: 'அமைப்புகளை ஏற்று', backup: 'காப்புப் பிரதி', paste: 'இங்கே ஒட்டவும்', ok: 'ஏற்றப்பட்டது', bad: 'தவறான அமைப்புகள்: ' },
+    loading: 'ஏற்றுகிறது…', nores: 'முடிவுகள் இல்லை', need: 'பெயர், தேதி, நேரம், ஊர் தேவை', badyear: 'ஆண்டு சரியாக இல்லை: 1800 முதல் 2100 வரை 4 இலக்கத்தில் உள்ளிடவும் (எ.கா. 1990)', reset: 'இயல்புநிலைக்கு மாற்று', exp: 'அமைப்புகளை நகலெடு', imp: 'அமைப்புகளை ஏற்று', backup: 'காப்புப் பிரதி', paste: 'இங்கே ஒட்டவும்', ok: 'ஏற்றப்பட்டது', bad: 'தவறான அமைப்புகள்: ' },
   en: { jath: 'Jathagam', match: 'Porutham', set: 'Settings', name: 'Name', date: 'Date of birth', time: 'Time of birth', place: 'Birth place (type a name)',
     manual: 'Not in the list? Enter latitude/longitude', lat: 'Latitude', lon: 'Longitude', tz: 'Time zone (hours)', tzauto: 'automatic', tzsel: 'Time zone', tzist: 'IST (+5:30)',
     go: 'Make jathagam', gom: 'Check porutham', pdf: 'Save as PDF', girl: 'Girl', boy: 'Boy', save: 'Save', load: 'Saved', del: 'Delete', reset: 'Reset to defaults',
-    loading: 'Loading…', nores: 'No results', need: 'Name, date, time and place are required', reset: 'Reset to defaults', exp: 'Show settings JSON', imp: 'Import settings', backup: 'Backup & restore', paste: 'Paste here', ok: 'Imported', bad: 'Invalid settings: ' },
+    loading: 'Loading…', nores: 'No results', need: 'Name, date, time and place are required', badyear: 'Please check the year: use 4 digits between 1800 and 2100 (e.g. 1990)', reset: 'Reset to defaults', exp: 'Show settings JSON', imp: 'Import settings', backup: 'Backup & restore', paste: 'Paste here', ok: 'Imported', bad: 'Invalid settings: ' },
 };
 const t = (k) => T[settings.ui_lang][k];
 function toast(msg) {
@@ -56,7 +56,7 @@ function birthForm(root, id, title) {
   root.innerHTML = `<fieldset><legend>${esc(title)}</legend>
   <label>${t('load')}</label><div class=two><select class=ld><option value="">—</option></select><button class="act alt dl" type=button>${t('del')}</button></div>
   <label>${t('name')}</label><input class=nm autocomplete=off>
-  <div class=two><div><label>${t('date')}</label><input type=date class=dt></div><div><label>${t('time')}</label><input type=time class=tm></div></div>
+  <div class=two><div><label>${t('date')}</label><input type=date class=dt min="1800-01-01" max="2100-12-31"></div><div><label>${t('time')}</label><input type=time class=tm></div></div>
   <label>${t('place')}</label><input class=pl autocomplete=off><div class=sug hidden></div>
   <label>${t('tzsel')}</label><select class=tzs><option value=auto>${t('tzauto')}</option><option value=ist>${t('tzist')}</option></select>
   <details><summary class=hint>${t('manual')}</summary><div class=three>
@@ -64,6 +64,7 @@ function birthForm(root, id, title) {
     <div><label>${t('tz')}</label><input class=tz type=number step=any placeholder="${t('tzauto')}"></div></div></details>
   <button class="act alt sv" type=button>${t('save')}</button></fieldset>`;
   const q = (s) => $(s, root);
+  let bad = false;                                    // chart() found an unusable year
   let chosen = null;                                  // {label, lat, lon, tzid}
   const refresh = () => {
     q('.ld').innerHTML = `<option value="">—</option>` + people().map((p, i) => `<option value=${i}>${esc(p.name)} · ${esc(p.date)}</option>`).join('');
@@ -92,11 +93,15 @@ function birthForm(root, id, title) {
   q('.dl').onclick = () => { const i = q('.ld').value; if (i === '') return; store.set('people', people().filter((_, j) => j != i)); refresh(); };
   return {
     read,
+    /** Message key for why chart() returned null. */
+    err: () => (bad ? 'badyear' : 'need'),
     /** Build a Chart from the form, or null when incomplete. */
     chart() {
+      bad = false;
       const p = read();
       if (!p.date || !p.time) return null;
       const [y, mo, d] = p.date.split('-').map(Number), [h, mi] = p.time.split(':').map(Number);
+      if (!(y >= 1800 && y <= 2100)) { bad = true; return null; }
       const local = { y, mo, d, h, mi };
       const lat = parseFloat(p.lat), lon = parseFloat(p.lon);
       if (isNaN(lat) || isNaN(lon)) return null;
@@ -179,13 +184,13 @@ function wire() {
     scrollTo(0, 0);
   }));
   $('#go-jath').onclick = () => {
-    const r = forms.jath.chart(); if (!r) return toast(t('need'));
+    const r = forms.jath.chart(); if (!r) return toast(t(forms.jath.err()));
     const html = V.jathagamHtml(r.chart, r.name);
     last.jath = { html, title: 'Jathagam_' + r.name };
     $('#res1').innerHTML = html; $('#out1').hidden = false; $('#out1').scrollIntoView();
   };
   $('#go-match').onclick = () => {
-    const g = forms.girl.chart(), b = forms.boy.chart(); if (!g || !b) return toast(t('need'));
+    const g = forms.girl.chart(), b = forms.boy.chart(); if (!g || !b) return toast(t((!g ? forms.girl : forms.boy).err()));
     const html = V.poruthamHtml(g.chart, b.chart, [g.name, b.name], settings);
     last.match = { html, title: `Porutham_${g.name}_${b.name}` };
     $('#res2').innerHTML = html; $('#out2').hidden = false; $('#out2').scrollIntoView();

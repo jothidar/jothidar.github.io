@@ -10,6 +10,17 @@ const html = (over = {}, name = 'T') => V.jathagamHtml(mk(over), name, Date.UTC(
 const text = (h) => h.replace(/<[^>]+>/g, ' ');
 const base = mk();
 
+// --- odd historical offsets and short years must not print raw decimals (reported: "26-09-199 16:13 (UTC+5.891111111111111)")
+{
+  const old = V.makeChart({ y: 199, mo: 9, d: 26, h: 16, mi: 13 }, 5.891111111111111, 22.5726, 88.3639, V.makeSettings(BRAND));
+  const t = text(V.jathagamHtml(old, 'T', Date.UTC(2026, 9, 23)));
+  check('year is 4 digits', t.includes('26-09-0199'), t.match(/\d\d-\d\d-\d+ \d\d:\d\d[^=]*/)?.[0]);
+  check('odd offset shown as h:mm', t.includes('UTC+5:53') && !/5\.8911/.test(t));
+  check('ordinary offset unchanged', text(html()).includes('(UTC+5.5)'));
+  const west = V.makeChart(...[{ y: 1990, mo: 1, d: 1, h: 6, mi: 0 }, -3.5, 47.5, -52.7], V.makeSettings(BRAND));
+  check('negative offset unchanged', text(V.jathagamHtml(west, 'T', Date.UTC(2026, 9, 23))).includes('(UTC-3.5)'));
+}
+
 // --- schema / validation
 check('defaults valid', V.makeSettings().ayanamsa === 'lahiri' && V.makeSettings().poruthams.length === 10);
 for (const bad of [{ ayanamsa: 'nope' }, { accent: 'red' }, { node: 'x' }, { chart_style: 'round' }, { default_tz: 'abc' }]) {

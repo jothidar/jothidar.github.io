@@ -312,7 +312,7 @@ function L(st) {
 }
 function fmtDate(ms, st) {
   if (ms == null) return '-';
-  const d = new Date(ms), D = pad(d.getUTCDate()), M = pad(d.getUTCMonth() + 1), Y = d.getUTCFullYear();
+  const d = new Date(ms), D = pad(d.getUTCDate()), M = pad(d.getUTCMonth() + 1), Y = String(d.getUTCFullYear()).padStart(4, '0');
   return { dmy_slash: `${D}/${M}/${Y}`, ymd: `${Y}-${M}-${D}`, long: `${D} ${MON[d.getUTCMonth()]} ${Y}` }[st.date_format] || `${D}-${M}-${Y}`;
 }
 function fmtTime(h, mi, st) { return st.time_format === '12h' ? `${h % 12 || 12}:${pad(mi)} ${h < 12 ? 'AM' : 'PM'}` : `${pad(h)}:${pad(mi)}`; }
@@ -323,9 +323,16 @@ function fmtDeg(x, st) {
   return `${x.toFixed(2)}°`;
 }
 const tzName = (tz) => (tz === 5.5 ? 'IST ' : '');
+/** "UTC+5.5" for ordinary zones; "UTC+5:53" for odd historical ones (local mean time from before standard time). */
+const fmtOffset = (tz) => {
+  const sign = tz < 0 ? '-' : '+', a = Math.abs(tz);
+  if (Number.isInteger(a * 4)) return `UTC${sign}${a}`;
+  const m = Math.round(a * 60);
+  return `UTC${sign}${Math.floor(m / 60)}:${pad(m % 60)}`;
+};
 /** Birth time with zone name (IST/UTC when it applies), offset, and optionally the UTC equivalent. */
 function bornText(c, st) {
-  const off = `UTC${c.tz >= 0 ? '+' : ''}${c.tz}`;
+  const off = fmtOffset(c.tz);
   let t = `${fmtLocal(c.local, st)} ${tzName(c.tz)}(${off})`;
   if (st.show_utc && c.tz !== 0) {
     const u = new Date(c.ms - c.tz * 3600000);
