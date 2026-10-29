@@ -51,6 +51,7 @@ nav .links a:hover{color:#fff}
 .btn.nav{padding:8px 16px;border-radius:10px;font-size:.9rem;flex-direction:row}
 .btn.out{color:var(--fg);border:1.5px solid var(--line);background:var(--surface)}
 .btn.out:hover{border-color:var(--a1)}
+button.btn{font:inherit;font-weight:600;cursor:pointer}
 
 /* hero */
 .hero{background:var(--hero-bg);color:var(--hero-fg);overflow:hidden;position:relative}
@@ -201,7 +202,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-si
       <figure class="shot" style="margin:0"><div class="phone"><img src="6-porutham-result.png" alt="Porutham result · பொருத்த முடிவு" loading="lazy"></div>Porutham result<span class="ta">பொருத்த முடிவு</span></figure>
     </div>
     <p class="center cta" style="margin-top:12px;justify-content:center"><a class="btn pri" href="app/index.html">Try it now – it's free<small>இப்போதே முயற்சிக்கவும் – இலவசம்</small></a>
-      <a class="btn out" href="https://wa.me/?text=Free%20astrology%20software%20for%20astrologers%3A%20jathagam%20%26%20porutham%2C%20%E2%82%B90%2C%20no%20subscription.%0A%E0%AE%9C%E0%AF%8B%E0%AE%A4%E0%AE%BF%E0%AE%9F%E0%AE%B0%E0%AF%8D%E0%AE%95%E0%AE%B3%E0%AF%81%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AF%81%20%E0%AE%87%E0%AE%B2%E0%AE%B5%E0%AE%9A%20%E0%AE%9C%E0%AE%BE%E0%AE%A4%E0%AE%95%E0%AE%AE%E0%AF%8D%20%26%20%E0%AE%AA%E0%AF%8A%E0%AE%B0%E0%AF%81%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AE%AE%E0%AF%8D%20%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AE%B2%E0%AE%BF.%0Ahttps%3A//saz-io.github.io/kaniyan/" target="_blank" rel="noopener">Share on WhatsApp<small>WhatsApp-இல் பகிருங்கள்</small></a></p>
+      <button class="btn out" id="share" type="button">Share<small>பகிருங்கள்</small></button></p>
   </div>
 </section>
 
@@ -234,5 +235,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mute);font-si
   </div>
 </footer>
 
+<script>
+document.getElementById('share').onclick=async()=>{
+  const d={title:'Kaniyan',text:'Free astrology software for astrologers: jathagam & porutham, ₹0. ஜோதிடர்களுக்கு இலவச ஜாதகம் & பொருத்தம் செயலி.',url:location.href.split('#')[0]};
+  try{if(navigator.share)await navigator.share(d);else{await navigator.clipboard.writeText(d.url);alert('Link copied · இணைப்பு நகலெடுக்கப்பட்டது')}}catch(e){}
+};
+</script>
 </body>
 </html>

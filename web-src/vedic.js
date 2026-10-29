@@ -52,7 +52,6 @@ export const SCHEMA = [
   { k: 'date_format', sec: 'report', type: 'select', def: 'dmy_dash', opts: ['dmy_dash', 'dmy_slash', 'ymd', 'long'], optLabels: ['31-12-1990', '31/12/1990', '1990-12-31', '31 Dec 1990'], en: 'Date format', ta: 'தேதி வடிவம்' },
   { k: 'show_utc', sec: 'report', type: 'bool', def: true, en: 'Show UTC time of birth', ta: 'UTC நேரம் காட்டு', hint: 'Adds e.g. “= 00:30 UTC” next to the birth time.' },
   { k: 'time_format', sec: 'report', type: 'select', def: '24h', opts: ['24h', '12h'], en: 'Time format', ta: 'நேர வடிவம்' },
-  { k: 'demo', sec: 'internal', type: 'bool', def: false, en: 'Demo watermark', ta: 'டெமோ' },
   { k: 'show_logo', sec: 'report', type: 'bool', def: true, en: 'Logo in header', ta: 'லோகோ' },
   { k: 'shop_name_ta', sec: 'report', type: 'text', def: '', max: 80, en: 'Shop name (Tamil)', ta: 'நிறுவனப் பெயர் (தமிழ்)' },
   { k: 'shop_name_en', sec: 'report', type: 'text', def: '', max: 80, en: 'Shop name (English)', ta: 'நிறுவனப் பெயர் (ஆங்கிலம்)' },
@@ -298,8 +297,7 @@ export const REPORT_CSS = `.rp{font-family:'Noto Serif Tamil','Noto Sans Tamil',
 .rp table.chart{table-layout:fixed;width:100%;max-width:62mm;margin:0 auto}.rp table.chart td{height:46px;font-size:.78em;vertical-align:top;padding:2px}
 .rp svg.nc{display:block;width:100%;max-width:62mm;margin:0 auto}.rp .ct{text-align:center;font-weight:700;font-size:.95em;margin-bottom:2px}
 .rp .ok{color:#116611}.rp .no{color:#aa1111}.rp .c{text-align:center}.rp .verdict{margin-top:8px;padding:6px 8px;border:2px solid;font-weight:700;text-align:center}
-.rp .col.wide{flex:1 1 270px}.rp td.d{white-space:nowrap}.rp .foot{text-align:center;margin-top:12px;font-size:.92em}.rp .addr{font-size:.85em}
-.rp.demo{position:relative}.rp.demo::after{content:'';position:absolute;inset:0;pointer-events:none;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='170'><text x='120' y='90' text-anchor='middle' transform='rotate(-25 120 85)' font-family='sans-serif' font-size='44' font-weight='bold' fill='rgba(190,0,0,0.20)'>DEMO</text></svg>")}`;
+.rp .col.wide{flex:1 1 270px}.rp td.d{white-space:nowrap}.rp .foot{text-align:center;margin-top:12px;font-size:.92em}.rp .addr{font-size:.85em}`;
 
 function L(st) {
   const ta = st.lang === 'ta';
@@ -382,7 +380,7 @@ export const setLogo = (u) => { logoOverride = u || null; };
 const head = (title, st) => `<div class=hd>${st.show_logo ? `<img src="${logoOverride || LOGO}" alt="">` : ''}<div class=shop><b>${esc(st.lang === 'ta' ? st.shop_name_ta : st.shop_name_en)}</b>${st.shop_phone ? `<div>${st.phone_icon ? esc(st.phone_icon) + ' ' : ''}${esc(st.shop_phone)}</div>` : ''}${st.shop_address ? `<div class=addr>${esc(st.shop_address)}</div>` : ''}</div><h1>${title}</h1></div>`;
 const footer = (st) => (st.show_footer || st.footer_note ? `<div class=foot>${st.show_footer ? esc(st.lang === 'ta' ? st.shop_name_ta : st.shop_name_en) + (st.shop_phone ? ' &nbsp; Ph: ' + esc(st.shop_phone) : '') : ''}${st.footer_note ? `<div>${esc(st.footer_note)}</div>` : ''}</div>` : '');
 const place = (c) => esc(c.place || `${c.lat.toFixed(4)}, ${c.lon.toFixed(4)}`);
-const wrap = (st, inner) => `<div class="rp${st.demo ? ' demo' : ''}" style="--acc:${st.accent};--fs:${FONT_PX[st.font_size]}px">${inner}</div>`;
+const wrap = (st, inner) => `<div class="rp" style="--acc:${st.accent};--fs:${FONT_PX[st.font_size]}px">${inner}</div>`;
 
 export function jathagamHtml(c, name = '', now = Date.now()) {
   const st = c.st, Lb = L(st), u = Lb.ui, star = nak(c.planets.Moon);
