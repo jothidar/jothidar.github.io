@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ta"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>கணியன்</title>
+<style>
+:root{--c:#b45309;--bg:#fffaf0;--ink:#1c1917;--line:#d6c9b0}
+*{box-sizing:border-box}body{margin:0;font-family:'Noto Sans Tamil','Noto Sans',sans-serif;background:var(--bg);color:var(--ink);padding-bottom:64px}
+header{background:var(--c);color:#fff;padding:8px 14px;position:sticky;top:0;z-index:5;display:flex;gap:10px;align-items:center}header img{width:44px;height:44px;border-radius:50%}
+header b{display:block;font-size:17px}header span{font-size:12px;opacity:.9}
+main{padding:12px 14px;max-width:760px;margin:0 auto}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid var(--line);z-index:5}
+nav button{flex:1;border:0;background:none;padding:14px 4px;font-size:14px;color:#57534e}nav button.on{color:var(--c);font-weight:700;border-top:3px solid var(--c);padding-top:11px}
+fieldset{border:1px solid var(--line);border-radius:10px;margin:0 0 12px;padding:10px 12px;background:#fff}details{margin:0 0 10px}summary{font-weight:700;color:var(--c);padding:10px 4px;font-size:15px}legend{padding:0 6px;font-weight:700;color:var(--c)}
+label{display:block;font-size:12px;color:#57534e;margin:8px 0 2px}
+input,select,textarea,button.act{width:100%;font:inherit;padding:9px;border:1px solid #bbb;border-radius:8px;background:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+button.act{background:var(--c);color:#fff;border:0;font-weight:700;margin-top:6px}button.alt{background:#fff;color:var(--c);border:1px solid var(--c)}
+.sug{border:1px solid var(--line);border-radius:8px;background:#fff;max-height:220px;overflow:auto;margin-top:2px}
+.sug div{padding:8px 10px;border-bottom:1px solid #eee}.sug small{color:#78716c}
+.chk{display:flex;flex-wrap:wrap;gap:6px 14px}.chk label{display:flex;gap:5px;align-items:center;margin:0;font-size:13px;color:var(--ink)}.chk input{width:auto}
+.hint{font-size:11px;color:#78716c;margin-top:2px}.bar{display:flex;gap:8px;margin:8px 0}.bar button{flex:1}
+#status{padding:30px;text-align:center}.tab{display:none}.tab.on{display:block}
+#res1,#res2{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;margin-top:10px;overflow-x:auto}
+</style></head>
+<body>
+<header><img id="hlogo" src="logo.png" alt=""><div><b id="hname"></b><span id="hphone"></span></div></header>
+<main>
+<div id="status">…</div>
+<section id="t-jath" class="tab on"><div id="f-jath"></div>
+  <button class="act" id="go-jath"></button><div id="out1" hidden><div class="bar"><button class="act" id="pdf-jath"></button></div><div id="res1"></div></div></section>
+<section id="t-match" class="tab"><div id="f-girl"></div><div id="f-boy"></div>
+  <button class="act" id="go-match"></button><div id="out2" hidden><div class="bar"><button class="act" id="pdf-match"></button></div><div id="res2"></div></div></section>
+<section id="t-set" class="tab"><div id="f-set"></div></section>
+</main>
+<nav><button data-t="jath" class="on"></button><button data-t="match"></button><button data-t="set"></button></nav>
+<script type="module" src="app.js"></script>
+</body></html>

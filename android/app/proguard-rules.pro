@@ -1,0 +1,4 @@
+-keepclassmembers class com.kaniyan.app.MainActivity$Bridge { @android.webkit.JavascriptInterface <methods>; }
+-keepattributes JavascriptInterface
+-repackageclasses ''
+-renamesourcefileattribute ''
