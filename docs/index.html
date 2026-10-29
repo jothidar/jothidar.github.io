@@ -188,7 +188,7 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
       <div class="users" id="users" aria-live="polite">
         <div class="un" id="ucount" data-on>0</div>
         <div class="ut">
-          <span data-on>visits so far, and every one is free · ₹0 fee, no subscription<span class="ta">இதுவரை வருகைகள், ஒவ்வொன்றும் இலவசம் · கட்டணம் ₹0, சந்தா இல்லை</span></span>
+          <span data-on>visits since 29 Oct 2026, and every one is free · ₹0 fee, no subscription<span class="ta">29 அக்டோபர் 2026 முதல் வருகைகள்; ஒவ்வொன்றும் இலவசம் · கட்டணம் ₹0, சந்தா இல்லை</span></span>
           <span data-off>Be among the first astrologers to use Jothidar, free<span class="ta">இலவசமாக ஜோதிடரைப் பயன்படுத்தும் முதல் ஜோதிடர்களில் ஒருவராகுங்கள்</span></span>
         </div>
       </div>
@@ -315,8 +315,8 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
 </footer>
 
 <script>
-(async()=>{                       // live visit count (every page load); the number stays hidden until it is big enough to be worth showing
-  const MIN=25,box=document.getElementById('users'),out=document.getElementById('ucount');
+(async()=>{                       // live visit count (every page load), shown as soon as there is at least one real visit
+  const MIN=1,box=document.getElementById('users'),out=document.getElementById('ucount');
   try{
     const r=await fetch('https://jothidar.goatcounter.com/counter/TOTAL.json');
     const n=parseInt(String((await r.json()).count).replace(/\D/g,''),10);
