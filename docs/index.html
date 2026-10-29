@@ -37,7 +37,7 @@ h1 .ta,h2 .ta{font-size:.62em;margin-top:2px}
 .zero .ta{letter-spacing:0;font-size:1rem;margin-top:4px}
 .mission{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center}
 .mission p{margin:0 auto 10px;max-width:40em}
-#qr svg,#qr img{width:200px;height:200px;background:#fff;padding:8px;border-radius:12px;border:1px solid var(--line)}
+#qr img{width:260px;max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
 
 </style>
 </head>
@@ -98,7 +98,7 @@ h1 .ta,h2 .ta{font-size:.62em;margin-top:2px}
   <h2>Support the initiative<span class="ta">இந்த முயற்சிக்கு ஆதரவு தாருங்கள்</span></h2>
   <p class="lead">Kaniyan will always be free. If it saved you time or money, an optional tip of any size helps keep it going.
     <span class="ta">கணியன் எப்போதும் இலவசம். உங்கள் நேரத்தையோ பணத்தையோ மிச்சப்படுத்தியிருந்தால், விருப்பமிருந்தால் எவ்வளவு சிறிய தொகையும் தரலாம்.</span></p>
-  <div id="qr" style="margin-bottom:12px"></div>
+  <div id="qr" style="margin-bottom:12px"><img src="upi-qr.png" alt="UPI QR code for saz@slc · UPI QR குறியீடு" loading="lazy"></div>
   <a class="btn" href="upi://pay?pa=saz@slc&pn=Kaniyan&cu=INR&tn=Kaniyan%20tip">Tip via UPI<span style="display:block;font-weight:400;font-size:.85em">UPI மூலம் ஆதரவு</span></a>
   <p class="lead" style="font-size:.9rem">Scan the QR with any UPI app, or pay to <b>saz@slc</b>.
     <span class="ta">எந்த UPI செயலியிலும் QR-ஐ ஸ்கேன் செய்யவும், அல்லது <b>saz@slc</b> க்கு அனுப்பவும்.</span></p>
@@ -117,9 +117,5 @@ h1 .ta,h2 .ta{font-size:.62em;margin-top:2px}
 </footer>
 
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-<script>
-try{var q=qrcode(0,'M');q.addData('upi://pay?pa=saz@slc&pn=Kaniyan&cu=INR&tn=Kaniyan%20tip');q.make();document.getElementById('qr').innerHTML=q.createSvgTag({cellSize:4,margin:2,scalable:true});}catch(e){}
-</script>
 </body>
 </html>
