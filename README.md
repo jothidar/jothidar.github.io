@@ -20,7 +20,6 @@
 | `tools/sync-site.sh` | Copies `web-src/` to `docs/app/` and rebuilds the offline cache list. |
 | `tools/build_places.py` | Builds `places.json` from GeoNames dumps. |
 | `tests/` | Engine checks (`node tests/golden.mjs | python tests/compare.py`). |
-| `android/` | Old Android WebView wrapper. Not maintained; the web app replaces it. |
 
 ## Run locally
 ```

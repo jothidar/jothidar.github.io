@@ -107,14 +107,13 @@ function birthForm(root, id, title) {
   };
 }
 
-// ---- PDF export through Android's print service ("Save as PDF"); browser print as a fallback
+// ---- PDF export: opens the browser print sheet, where the user picks "Save as PDF"
 const PRINT_PX = { small: 10, medium: 11, large: 12.5 };
 function exportPdf(html, title) {
   const css = `@page{size:${settings.paper === 'Letter' ? 'letter' : 'A4'};margin:10mm}body{margin:0}.rp{--fs:${PRINT_PX[settings.font_size]}px!important}.rp td,.rp th{padding:2px 5px}.rp table.chart td{height:40px}.rp h1{font-size:1.5em}.rp .hd img{width:15mm;height:15mm}.rp h2{margin:8px 0 4px}`;
-  const doc = `<!doctype html><html><head><meta charset="utf-8"><style>${V.REPORT_CSS}${css}</style></head><body>${html}</body></html>`;
   const job = title.replace(/[^\p{L}\p{N}]+/gu, '_').slice(0, 40) || 'jathagam';
-  if (window.Android?.printHtml) window.Android.printHtml(doc, job, settings.paper);
-  else { const w = open('', '_blank'); w.document.write(doc); w.document.close(); w.print(); }
+  const doc = `<!doctype html><html><head><meta charset="utf-8"><title>${job}</title><style>${V.REPORT_CSS}${css}</style></head><body>${html}</body></html>`;
+  const w = open('', '_blank'); w.document.write(doc); w.document.close(); w.print();
 }
 
 // ---- settings screen, generated from V.SCHEMA

@@ -1,8 +1,0 @@
-keystore.properties
-*.jks
-build/
-.gradle/
-local.properties
-web.key
-app/src/main/assets/www/
-app/src/main/java/com/kaniyan/app/K.java
