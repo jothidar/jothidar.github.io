@@ -309,7 +309,7 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
     <svg class="lt" viewBox="0 0 60 32" aria-hidden="true"><use href="#lotus"/></svg>
     Jothidar is free software under the <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>, built on the Swiss Ephemeris.<br>
     Contact · தொடர்புக்கு: <a href="mailto:sathiyajithjn@gmail.com">sathiyajithjn@gmail.com</a><br>
-    Usage count: devices only, one anonymous +1 the first time a report is made. No names, dates or places are ever sent.<span class="ta">பயன்படுத்தியோர் எண்ணிக்கை: சாதனங்கள் மட்டும்; முதல் அறிக்கைக்கு ஒரு பெயரற்ற +1. பெயர், தேதி, ஊர் எதுவும் அனுப்பப்படாது.</span><br>
+    Anonymous statistics (GoatCounter, no cookies): page visits, plus one +1 per device the first time a report is made. No names, dates or places are ever sent.<span class="ta">பெயரற்ற புள்ளிவிவரம் (GoatCounter, குக்கீ இல்லை): பக்க வருகைகள், மற்றும் முதல் அறிக்கைக்கு ஒரு சாதனத்துக்கு ஒரு +1. பெயர், தேதி, ஊர் எதுவும் அனுப்பப்படாது.</span><br>
     Place data · இடத் தரவு © <a href="https://www.geonames.org">GeoNames</a>, CC-BY 4.0.
   </div>
 </footer>
@@ -332,5 +332,7 @@ document.getElementById('share').onclick=async()=>{
   try{if(navigator.share)await navigator.share(d);else{await navigator.clipboard.writeText(d.url);alert('Link copied · இணைப்பு நகலெடுக்கப்பட்டது')}}catch(e){}
 };
 </script>
+<script data-goatcounter="https://jothidar.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
