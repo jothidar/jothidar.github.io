@@ -2,25 +2,40 @@
 <html lang="ta"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>கணியன்</title>
+<meta name="theme-color" content="#14102b">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;700&display=swap">
 <style>
-:root{--c:#b45309;--bg:#fffaf0;--ink:#1c1917;--line:#d6c9b0}
-*{box-sizing:border-box}body{margin:0;font-family:'Noto Sans Tamil','Noto Sans',sans-serif;background:var(--bg);color:var(--ink);padding-bottom:64px}
-header{background:var(--c);color:#fff;padding:8px 14px;position:sticky;top:0;z-index:5;display:flex;gap:10px;align-items:center}header img{width:44px;height:44px;border-radius:50%}
-header b{display:block;font-size:17px}header span{font-size:12px;opacity:.9}
-main{padding:12px 14px;max-width:760px;margin:0 auto}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid var(--line);z-index:5}
-nav button{flex:1;border:0;background:none;padding:14px 4px;font-size:14px;color:#57534e}nav button.on{color:var(--c);font-weight:700;border-top:3px solid var(--c);padding-top:11px}
-fieldset{border:1px solid var(--line);border-radius:10px;margin:0 0 12px;padding:10px 12px;background:#fff}details{margin:0 0 10px}summary{font-weight:700;color:var(--c);padding:10px 4px;font-size:15px}legend{padding:0 6px;font-weight:700;color:var(--c)}
-label{display:block;font-size:12px;color:#57534e;margin:8px 0 2px}
-input,select,textarea,button.act{width:100%;font:inherit;padding:9px;border:1px solid #bbb;border-radius:8px;background:#fff}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-button.act{background:var(--c);color:#fff;border:0;font-weight:700;margin-top:6px}button.alt{background:#fff;color:var(--c);border:1px solid var(--c)}
-.sug{border:1px solid var(--line);border-radius:8px;background:#fff;max-height:220px;overflow:auto;margin-top:2px}
-.sug div{padding:8px 10px;border-bottom:1px solid #eee}.sug small{color:#78716c}
-.chk{display:flex;flex-wrap:wrap;gap:6px 14px}.chk label{display:flex;gap:5px;align-items:center;margin:0;font-size:13px;color:var(--ink)}.chk input{width:auto}
-.hint{font-size:11px;color:#78716c;margin-top:2px}.bar{display:flex;gap:8px;margin:8px 0}.bar button{flex:1}
-#status{padding:30px;text-align:center}.tab{display:none}.tab.on{display:block}
-#res1,#res2{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;margin-top:10px;overflow-x:auto}
+:root{color-scheme:light dark;--c:#c2570c;--c2:#f59e0b;--bg:#faf7f0;--ink:#1a1530;--mute:#5d5878;--line:#e4dfd2;--card:#fff;--field:#fff;--fline:#cfc8b6;--shadow:0 1px 2px rgba(20,16,43,.06),0 6px 20px rgba(20,16,43,.06)}
+@media(prefers-color-scheme:dark){:root{--c:#fb923c;--c2:#fbbf24;--bg:#0d0a1d;--ink:#f3f0ff;--mute:#a9a3c9;--line:#2a2447;--card:#17122e;--field:#1f1a3d;--fline:#3a3466;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35)}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 Inter,'Noto Sans Tamil','Noto Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:calc(76px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+header{background:radial-gradient(500px 140px at 90% -40%,rgba(99,102,241,.45),transparent 70%),#14102b;color:#fff;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top));position:sticky;top:0;z-index:5;display:flex;gap:12px;align-items:center;box-shadow:0 2px 14px rgba(0,0,0,.25)}
+header img{width:44px;height:44px;border-radius:50%;border:2px solid rgba(251,191,36,.7);background:#fff}
+header b{display:block;font-size:17px;font-weight:700;line-height:1.25}header span{font-size:12.5px;color:#cfc9ee}
+main{padding:16px;max-width:760px;margin:0 auto}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;gap:4px;padding:6px 8px calc(6px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);z-index:5}
+nav button{flex:1;border:0;background:none;padding:10px 4px;font:inherit;font-size:13.5px;font-weight:500;color:var(--mute);border-radius:12px;transition:background .15s,color .15s}
+nav button.on{color:var(--c);font-weight:700;background:color-mix(in srgb,var(--c) 13%,transparent)}
+fieldset{border:1px solid var(--line);border-radius:16px;margin:0 0 14px;padding:12px 14px 14px;background:var(--card);box-shadow:var(--shadow)}
+legend{padding:0 8px;font-weight:700;color:var(--c);font-size:15px}
+details{margin:0 0 12px}summary{font-weight:700;color:var(--c);padding:12px 6px;font-size:15px;cursor:pointer}
+label{display:block;font-size:12.5px;font-weight:500;color:var(--mute);margin:10px 0 4px}
+input,select,textarea,button.act{width:100%;font:inherit;font-size:16px;padding:11px 12px;border:1px solid var(--fline);border-radius:12px;background:var(--field);color:var(--ink);transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 25%,transparent)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+button.act{background:linear-gradient(135deg,var(--c2),var(--c));color:#1b1305;border:0;font-weight:700;margin-top:8px;min-height:48px;cursor:pointer;box-shadow:0 6px 18px color-mix(in srgb,var(--c) 35%,transparent);transition:transform .1s,box-shadow .15s}
+button.act:active{transform:scale(.98)}
+button.alt{background:transparent;color:var(--c);border:1.5px solid var(--c);box-shadow:none}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--c2);outline-offset:2px}
+.sug{border:1px solid var(--line);border-radius:12px;background:var(--card);max-height:240px;overflow:auto;margin-top:4px;box-shadow:var(--shadow)}
+.sug div{padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}.sug div:last-child{border-bottom:0}.sug div:hover{background:color-mix(in srgb,var(--c) 10%,transparent)}.sug small{color:var(--mute)}
+.chk{display:flex;flex-wrap:wrap;gap:8px 16px}.chk label{display:flex;gap:6px;align-items:center;margin:0;font-size:13.5px;color:var(--ink)}.chk input{width:auto}
+.hint{font-size:12px;color:var(--mute);margin-top:3px}.bar{display:flex;gap:8px;margin:10px 0}.bar button{flex:1}
+#status{padding:32px;text-align:center;color:var(--mute)}.tab{display:none}.tab.on{display:block}
+#res1,#res2{background:#fff;color:#1c1917;border:1px solid var(--line);border-radius:16px;padding:10px;margin-top:12px;overflow-x:auto;box-shadow:var(--shadow)}
+@media(min-width:900px){main{padding-top:28px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head>
 <body>
 <header><img id="hlogo" src="logo.png" alt=""><div><b id="hname"></b><span id="hphone"></span></div></header>
