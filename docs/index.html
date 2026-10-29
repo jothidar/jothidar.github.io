@@ -188,7 +188,7 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
       <div class="users" id="users" aria-live="polite">
         <div class="un" id="ucount" data-on>0</div>
         <div class="ut">
-          <span data-on>times Jothidar has been used, every time for ₹0 · no fee, no subscription<span class="ta">முறை ஜோதிடர் பயன்படுத்தப்பட்டுள்ளது; ஒவ்வொரு முறையும் கட்டணம் ₹0, சந்தா இல்லை</span></span>
+          <span data-on>visits so far, and every visit is free · ₹0 fee, no subscription<span class="ta">இதுவரை வருகைகள்; ஒவ்வொரு வருகையும் இலவசம் · கட்டணம் ₹0, சந்தா இல்லை</span></span>
           <span data-off>Be among the first astrologers to use Jothidar, free<span class="ta">இலவசமாக ஜோதிடரைப் பயன்படுத்தும் முதல் ஜோதிடர்களில் ஒருவராகுங்கள்</span></span>
         </div>
       </div>
@@ -309,18 +309,18 @@ footer .lt{display:block;width:40px;height:21px;margin:0 auto 10px;color:var(--g
     <svg class="lt" viewBox="0 0 60 32" aria-hidden="true"><use href="#lotus"/></svg>
     Jothidar is free software under the <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>, built on the Swiss Ephemeris.<br>
     Contact · தொடர்புக்கு: <a href="mailto:sathiyajithjn@gmail.com">sathiyajithjn@gmail.com</a><br>
-    Anonymous usage count (GoatCounter, no cookies): every page visit and every app opening is counted. No names, dates or places are ever sent.<span class="ta">பெயரற்ற பயன்பாட்டு எண்ணிக்கை (GoatCounter, குக்கீ இல்லை): ஒவ்வொரு பக்க வருகையும், செயலி திறப்பும் எண்ணப்படும். பெயர், தேதி, ஊர் எதுவும் அனுப்பப்படாது.</span><br>
+    Anonymous usage count (GoatCounter, no cookies): every page visit is counted, repeat visits included. No names, dates or places are ever sent.<span class="ta">பெயரற்ற பயன்பாட்டு எண்ணிக்கை (GoatCounter, குக்கீ இல்லை): ஒவ்வொரு பக்க வருகையும், மீண்டும் வருவதும் எண்ணப்படும். பெயர், தேதி, ஊர் எதுவும் அனுப்பப்படாது.</span><br>
     Place data · இடத் தரவு © <a href="https://www.geonames.org">GeoNames</a>, CC-BY 4.0.
   </div>
 </footer>
 
 <script>
-(async()=>{                       // live usage count: how many times the app has been opened (counted by GoatCounter under the path app-open)
+(async()=>{                       // live visit count: every page load counts, repeat visits included, shown as is (no threshold)
   const box=document.getElementById('users'),out=document.getElementById('ucount');
   try{
-    const r=await fetch('https://jothidar.goatcounter.com/counter//app-open.json');
+    const r=await fetch('https://jothidar.goatcounter.com/counter/TOTAL.json');
     const n=parseInt(String((await r.json()).count).replace(/\D/g,''),10);
-    if(!(n>=1))return;
+    if(isNaN(n))return;
     box.dataset.state='on';
     const still=matchMedia('(prefers-reduced-motion:reduce)').matches,t0=performance.now();
     const tick=t=>{const k=still?1:Math.min((t-t0)/1200,1);out.textContent=Math.round(n*(1-Math.pow(1-k,3))).toLocaleString('en-IN');if(k<1)requestAnimationFrame(tick)};
