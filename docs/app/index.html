@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>கணியன்</title>
 <meta name="theme-color" content="#14102b">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;700&display=swap">
 <style>
@@ -34,6 +35,7 @@ button:focus-visible,summary:focus-visible{outline:3px solid var(--c2);outline-o
 .hint{font-size:12px;color:var(--mute);margin-top:3px}.bar{display:flex;gap:8px;margin:10px 0}.bar button{flex:1}
 #status{padding:32px;text-align:center;color:var(--mute)}.tab{display:none}.tab.on{display:block}
 #res1,#res2{background:#fff;color:#1c1917;border:1px solid var(--line);border-radius:16px;padding:10px;margin-top:12px;overflow-x:auto;box-shadow:var(--shadow)}
+.src{text-align:center;font-size:12px;margin:4px 16px 16px}.src a{color:var(--mute)}
 @media(min-width:900px){main{padding-top:28px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head>
@@ -48,5 +50,7 @@ button:focus-visible,summary:focus-visible{outline:3px solid var(--c2);outline-o
 <section id="t-set" class="tab"><div id="f-set"></div></section>
 </main>
 <nav><button data-t="jath" class="on"></button><button data-t="match"></button><button data-t="set"></button></nav>
+<p class="src"><a href="https://github.com/saz-io/kaniyan">Free &amp; open source (AGPL-3.0) · மூலக் குறிமுறை</a></p>
 <script type="module" src="app.js"></script>
+<script>if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script>
 </body></html>
